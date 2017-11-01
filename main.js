@@ -18,6 +18,7 @@ function preload() {
     this.load.spritesheet('coin', 'assets/coin2.png', 16, 16);
     this.load.spritesheet('lives', 'assets/lives.png', 49, 8);
     //this.load.tilemap('level', 'assets/super_mario_map.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.spritesheet('mashroom', 'assets/mushroom.png', 16, 16);
     this.load.tilemap('level', 'assets/new map.json', null, Phaser.Tilemap.TILED_JSON);
 
     this.load.audio('backgr', 'audio/bgm.ogg');
@@ -56,7 +57,7 @@ function create() {
     mashrooms = game.add.group();
     mashrooms.enableBody = true;
     mashrooms.alpha = 1.0;
-    map.createFromTiles(3, null, '', 'stuff', mashrooms);
+    map.createFromTiles(3, null, 'mashroom', 'stuff', mashrooms);
 
 
     coins = game.add.group();
