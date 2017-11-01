@@ -20,7 +20,7 @@ function preload() {
     //this.load.tilemap('level', 'assets/super_mario_map.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.spritesheet('mashroom', 'assets/mushroom.png', 16, 16);
     this.load.tilemap('level', 'assets/new map.json', null, Phaser.Tilemap.TILED_JSON);
-
+    // loading music and sounds
     this.load.audio('backgr', 'audio/bgm.ogg');
     this.load.audio('mcoin', 'audio/smb_coin.wav');
     this.load.audio('Jump', 'audio/smb_jump-small.wav');
@@ -36,6 +36,7 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.stage.backgroundColor = '#5c94fc';
+    //initializing : Score, Lives, Bonus
     game.score = 0;
     game.lives = 5;
     game.bonus = false;
@@ -49,17 +50,16 @@ function create() {
 
     layer = map.createLayer('solid');
     layer.resizeWorld();
-
+    // adding water in tilemap
     water = game.add.group();
     water.enableBody = true;
     map.createFromTiles([9, 12], null, '', 'background', water);
-
+    //adding mashrooms in tilemap
     mashrooms = game.add.group();
     mashrooms.enableBody = true;
-    mashrooms.alpha = 1.0;
     map.createFromTiles(3, null, 'mashroom', 'stuff', mashrooms);
 
-
+    //giving new animation for coins
     coins = game.add.group();
     coins.enableBody = true;
     map.createFromTiles(2, null, 'coin', 'stuff', coins);
@@ -75,7 +75,7 @@ function create() {
     goombas.setAll('body.velocity.x', -20);
     goombas.setAll('body.gravity.y', 500);
 
-    // lives::
+    // lives:: and dislpay them
     game.lives = 5;
     hearts = game.add.sprite(0, 0, 'lives');
     hearts.frame = 5 - game.lives;
@@ -92,6 +92,7 @@ function create() {
 
     game.camera.follow(player);
     cursors = game.input.keyboard.createCursorKeys();
+    //adding text for score
     text = game.add.text(10, 10, 'SCORE:\n',{
         font: "10px Arial",
         fill: "#ffffff",
@@ -100,6 +101,7 @@ function create() {
     text.fontWeight = 'bold';
     text.fixedToCamera = true;
     text.z = 10;
+    
     killed = false;
     touched = 0;
     music = game.add.sound('backgr');
