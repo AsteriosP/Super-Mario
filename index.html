@@ -1,18 +1,37 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-<title>Super-Mario</title>
-<meta charset="utf-8">
-<style>
-body {
-	margin: 0;
-	padding: 0;
-	background-color: #0ff;
-}
-</style>
-</head>
-<body>
-	<script type="text/javascript" src="phaser.js"></script>
-	<script type="text/javascript" src="main.js"></script>
-</body>
+	<head>
+			<meta charset="utf-8"/>
+			<title>tsapraniotis</title>
+			
+	</head>
+	
+	<script src="src/phaser.js"></script>
+	<script src="src/preloader.js"></script>
+	<script src="src/menu/gamemenu.js"></script>
+	<script src="src/menu/menuLevel.js"></script>	
+	<script src="src/thegame.js"></script>
+	<script src="src/levelSucc.js"></script>
+	<script src="src/gameover.js"></script>
+
+	<body>
+			<script type="text/javascript">
+				window.onload = function() {
+					var game = new Phaser.Game(256, 240, Phaser.CANVAS, "game");
+					game.state.add("Preloader",preloader);
+					//game.state.add("bootMenu",gameOver);
+					game.state.add("GameMenu",gameMenu);
+					game.state.add("TheGame",theGame);
+					game.state.add("GameOver",gameOver);
+					game.state.add("LevelSelect",menulevel);
+					game.state.add("LevelSuccess",levelSucc);
+
+					game.state.start("Preloader");
+				}
+			</script>
+
+	</body>
+	
+
+
 </html>
