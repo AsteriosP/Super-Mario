@@ -1,10 +1,10 @@
 var theGame = function(game){};
 
-var score = 0;
+
 var lives = 5;
 var bonus = false;
 var teleported = false;
-var levels = ['assets/super_mario_map_1.json', 'assets/map2.json'] 
+var levels = ['assets/super_mario_map_1.json', 'assets/map2.json']
 var confused = false;
 
 theGame.prototype = {
@@ -16,13 +16,15 @@ theGame.prototype = {
     },
 
   	create: function(game){
-
-		  game.stage.backgroundColor = '#5c94fc';
+        if (levelSelected == 0){
+            score = 0;
+        }
+		game.stage.backgroundColor = '#5c94fc';
 	    score = 0;
 	    lives = 5;
 	    bonus = false;
 	    teleported = false;
-      vel = 120;
+        vel = 120;
 	    map = this.add.tilemap('level');
   	    map.addTilesetImage('tiles', 'tiles');
   	    map.setCollisionBetween(8, 15, true, 'solid');
@@ -134,7 +136,7 @@ theGame.prototype = {
         if(touchedgoomba == 0 && killed == false){
             game.physics.arcade.overlap(player, goombas, this.goombaOverlap.bind(this));
         }
-        
+
         if (!confused){
             if (player.alpha == 1.0){
                 if (player.body.enable) {
@@ -209,6 +211,7 @@ theGame.prototype = {
             game.sound.stopAll();
             gameOver.play();
             this.game.state.start("GameOver");
+            played = false;
         }
     },
         //1284, y: 176.4
@@ -284,9 +287,14 @@ theGame.prototype = {
         if(cursors.down.isDown){
             this.sound.stopAll();
             //stageClear.play();
-            this.time.events.add(Phaser.Timer.SECOND, function (){
-                this.state.start('LevelSuccess');
-            }, this);
+            if (levelSelected === 1){
+                this.time.events.add(Phaser.Timer.SECOND, function (){
+                    this.state.start('LevelSuccess');
+                }, this);
+            }else {
+                played = true;
+                this.state.start('NextLevelMenu');
+            }
             //this.state.start('GameMenu');
         }
     },
