@@ -2,6 +2,7 @@ var menulevel = function(game){}
 // http://www.mariouniverse.com/sprites/snes/smb3
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm#Cellular_automaton_algorithms
+var played;
 menulevel.prototype = {
     preload: function(){
 
@@ -20,9 +21,10 @@ menulevel.prototype = {
 
     startLevel1: function(game){
         levelSelected = 0;
+        played = true;
         this.game.state.start('TheGame');
     },
-    
+
     startLevel2: function(game){
         levelSelected = 1;
         this.game.state.start('TheGame');
