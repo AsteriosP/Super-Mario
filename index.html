@@ -3,13 +3,14 @@
 	<head>
 			<meta charset="utf-8"/>
 			<title>AsteriosP</title>
-			
+
 	</head>
-	
+
 	<script src="src/phaser.js"></script>
 	<script src="src/preloader.js"></script>
 	<script src="src/menu/gamemenu.js"></script>
-	<script src="src/menu/menuLevel.js"></script>	
+	<script src="src/menu/menuLevel.js"></script>
+	<script src="src/menu/nextLevelMenu.js"></script>
 	<script src="src/thegame.js"></script>
 	<script src="src/levelSucc.js"></script>
 	<script src="src/gameover.js"></script>
@@ -17,6 +18,7 @@
 	<body>
 			<script type="text/javascript">
 				window.onload = function() {
+					var score;
 					var game = new Phaser.Game(256, 240, Phaser.CANVAS, "game");
 					game.state.add("Preloader",preloader);
 					//game.state.add("bootMenu",gameOver);
@@ -25,13 +27,15 @@
 					game.state.add("GameOver",gameOver);
 					game.state.add("LevelSelect",menulevel);
 					game.state.add("LevelSuccess",levelSucc);
+					game.state.add("NextLevelMenu",nextLevel);
+
 
 					game.state.start("Preloader");
 				}
 			</script>
-
+nextLevelMenu.js
 	</body>
-	
+
 
 
 </html>
