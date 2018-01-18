@@ -27,6 +27,7 @@ gameMenu.prototype = {
     },
 
     start: function(game){
+        game.levelSelected = 0;
         console.log('geia');
         this.game.state.start('TheGame');
     },
