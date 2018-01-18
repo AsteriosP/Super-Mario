@@ -204,7 +204,7 @@ theGame.prototype = {
         if (game.input.keyboard.isDown(Phaser.KeyCode.T) && !game.teleported){
             player.body.position.x = 1284;
             player.body.position.y = 176.4;
-            game.teleported = true;
+            //game.teleported = true;
         }
         if(hearts.frame == 5){
             console.log(score);
